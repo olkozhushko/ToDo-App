@@ -1,0 +1,13 @@
+.task-body__select-tab {
+  width: 100%;
+  padding: 0.2rem;
+  font: 0.9rem/1.4rem helvetica, arial;
+  text-align: left;
+  border: 1px solid rgb(204, 195, 195);
+  border-radius: 3px;
+  transition: all 0.1s linear;
+}
+
+.task-body__select-tab:hover {
+  box-shadow: var(--st-shadow, 1px);
+}

@@ -1,0 +1,8 @@
+.task-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

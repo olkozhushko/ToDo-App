@@ -13,18 +13,18 @@ class Notes extends Component {
   handleChange(e) {
     this
       .props
-      .handleNoteTextChange(e.target.value);
+      .handleChange(e.target);
   }
 
   render() {
     return (
-      <form className="note-text-form">
-        <label htmlFor="note-content">
-          Notes
+      <form className="note-form">
+        <label htmlFor="content">
+          <span className="note-form__title">Notes</span>
           <textarea
-            id="note-content"
+            id="content"
             value={this.props.textNoteValue}
-            className="note-text-form__area"
+            className="note-form__area"
             onChange={this.handleChange}/>
         </label>
       </form>

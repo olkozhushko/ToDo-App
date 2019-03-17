@@ -12,12 +12,16 @@ class CompleteTaskBar extends Component {
   }
 
   render() {
+    const className = (this.props.doneTasksCounter ? 
+      "complete-task-bar" :
+      "complete-task-bar complete-task-bar_hidden");
+
     return (
-      <div className="complete-task-bar">
+      <div className={className}>
         <button 
           className="complete-task-bar__clear-btn"
           onClick={this.handleClick}>
-          Done{this.props.doneTaskCounter}
+          Done ({this.props.doneTasksCounter})
         </button>
       </div>
     );

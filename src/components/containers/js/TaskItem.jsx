@@ -12,7 +12,8 @@ class TaskItem extends Component {
       taskBodyHidden: true,
       priorityColor: "",
       selectValue: "",
-      id: this.props.id
+      id: this.props.id,
+      arrowOpenTaskBody: false
     }
 
     this.handleChange = this
@@ -21,24 +22,24 @@ class TaskItem extends Component {
     this.handleTaskBodyClick = this
       .handleTaskBodyClick
       .bind(this);
-    this.handleTaskItemClick = this
-      .handleTaskItemClick
+    this.handleHeaderClick = this
+      .handleHeaderClick
       .bind(this);
   }
 
   handleTaskBodyClick(e) {
-    console.log(e.target);
     if (e.target && e.target.tagName === "DIV") {
       this.setState(state => ({
-        taskBodyHidden: !state.taskBodyHidden
+        taskBodyHidden: !state.taskBodyHidden,
       }));
     }
   }
 
-  handleTaskItemClick(e) {
-    if (e.target.tagName === "LI") {
+  handleHeaderClick(e) {
+    if (e.target.tagName !== "INPUT") {
       this.setState(state => ({
-        taskBodyHidden: !state.taskBodyHidden
+        taskBodyHidden: !state.taskBodyHidden,
+        arrowOpenTaskBody: !state.arrowOpenTaskBody
       }));
     }
   }
@@ -63,19 +64,28 @@ class TaskItem extends Component {
     let hiddenItem = this.props.taskItemChecked && this.props.hideItem;
 
     const checked = this.props.taskItemChecked;
-    console.log(checked);
+    const itemContent = (this.props.taskItemChecked
+      ? <del>
+          <span className="task-list__text">{this.props.text}</span>
+        </del>
+      : <span className="task-list__text">{this.props.text}</span>);
+    
+    console.log(hiddenItem);
     return (
       <li
-        className="task-item"
-        hidden={hiddenItem}
+        className={hiddenItem ? 
+          "task-list__item task-list__item_hidden" : 
+          "task-list__item"}
         onClick={this.handleTaskItemClick}>
 
-        <TaskItemCheckBox
-          checked={this.props.taskItemChecked}
+        <TaskItemHeader
+          handleCheckBoxChange={this.props.handleCheckBoxChange}
+          handleHeaderClick={this.handleHeaderClick}
           id={this.state.id}
-          handleCheckBoxChange={this.props.handleCheckBoxChange}/> {this.props.taskItemChecked
-          ? <del>{this.props.text}</del>
-          : this.props.text}
+          checked={checked}
+          itemContent={itemContent}
+          arrowOpenTaskBody={this.state.arrowOpenTaskBody}/>
+
         <TaskBody
           itemStateData={this.state}
           handleTaskBodyClick={this.handleTaskBodyClick}
@@ -86,12 +96,20 @@ class TaskItem extends Component {
   }
 }
 
-class TaskItemCheckBox extends Component {
+class TaskItemHeader extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this
       .handleChange
       .bind(this);
+
+    this.handleHeaderClick = this
+      .handleHeaderClick
+      .bind(this);
+  }
+
+  handleHeaderClick(e) {
+    this.props.handleHeaderClick(e);
   }
 
   handleChange(e) {
@@ -101,12 +119,26 @@ class TaskItemCheckBox extends Component {
   }
 
   render() {
-    return (<input
-      type="checkbox"
-      name="task"
-      className="task-item__checkbox"
-      checked={this.props.checked}
-      onChange={this.handleChange}/>)
+    const caretIconClassName = (this.props.arrowOpenTaskBody ?
+    "fas fa-caret-down task-list__caretup-icon" : 
+    "fas fa-caret-up task-list__caretup-icon");
+
+    return (
+      <div className="task-list__item-header" onClick={this.handleHeaderClick}>
+
+        <i className="fas fa-bars task-list__bars-icon"></i>
+
+        <input
+          type="checkbox"
+          name="task"
+          className="task-list__checkbox"
+          checked={this.props.checked}
+          onChange={this.handleChange}/> {this.props.itemContent}
+
+        <i className={caretIconClassName}></i>
+      </div>
+
+    )
   }
 }
 

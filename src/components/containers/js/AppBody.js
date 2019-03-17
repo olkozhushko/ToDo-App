@@ -12,12 +12,14 @@ class AppBody extends Component {
       itemCounter: 0,
       addTaskInputValue: "",
       hideCompletedTask: false,
+      checkedItemNumber: 0
     };
     
     this.handleAddTaskChange = this.handleAddTaskChange.bind(this);
     this.handleAddTaskSubmit = this.handleAddTaskSubmit.bind(this);
     this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this);
     this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
+    this.handleCompleteButton = this.handleCompleteButton.bind(this);
   }
   
   handleCheckBoxChange(id) {
@@ -29,10 +31,12 @@ class AppBody extends Component {
           el.taskItemChecked = !el.taskItemChecked;
           return el;
         }
-        console.log(el.id);
-        console.log(id);
         return el;
-      })
+      }),
+      checkedItemNumber: state.tasks.reduce((prev, curr) => {
+        if (curr.taskItemChecked) return ++prev;
+        return prev;
+      }, 0)
     }));
   }
 
@@ -68,6 +72,7 @@ class AppBody extends Component {
     this.setState(state => ({
       hideCompletedTask: !state.hideCompletedTask
     }));
+    
   }
 
   componentDidMount() {
@@ -77,18 +82,19 @@ class AppBody extends Component {
   render() {
     return (
       <div className="app-body">
-        <AddTaskBar 
-          handleTaskChange={this.handleAddTaskChange}
-          handleTaskSubmit={this.handleAddTaskSubmit}
-          typedText={this.state.addTaskInputValue}/>
         <TaskList 
           taskItems={this.state.tasks}
           handleDeleteButtonClick={this.handleDeleteButtonClick}
           hideItem={this.state.hideCompletedTask}
           handleCheckBoxChange={this.handleCheckBoxChange}
           />
+        <AddTaskBar 
+          handleTaskChange={this.handleAddTaskChange}
+          handleTaskSubmit={this.handleAddTaskSubmit}
+          typedText={this.state.addTaskInputValue}/>
         <CompleteTaskBar 
-          handleCompleteButton={this.handleCompleteButton}/>
+          handleCompleteButton={this.handleCompleteButton}
+          doneTasksCounter={this.state.checkedItemNumber}/>
       </div>
     );
   }

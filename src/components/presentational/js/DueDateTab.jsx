@@ -7,27 +7,27 @@ class DueDateTab extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange() {
-    this.props.handleChange();
+  handleChange(e) {
+    this.props.handleChange(e.target);
   }
 
   render() {
     return (
-      <div className="date-tab">
+      <span className="date-box__tab">
         <input 
           type="button" 
           value="Today" 
-          className="date-tab__today-btn"/>
+          className="date-box__today-btn .date-box__btn_bottom-righ"/>
         <input 
           type="button" 
           value="Tomorrow" 
-          className="date-tab__tomorrow-btn"/>
+          className="date-box__tomorrow-btn .date-box__btn_bottom-right"/>
         <input
           type="date"
           value={this.props.dateValue}
           onChange={this.handleChange}
-          className="date-tab__date-content"/>
-      </div>
+          className="date-box__content"/>
+      </span>
     );
   }
 }

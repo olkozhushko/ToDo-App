@@ -1,0 +1,21 @@
+.date-box {
+  display: flex;
+  align-items: center;
+}
+
+.date-box__tab {
+  background: #f1f0ef;
+  border-radius: var(--box-radius);
+}
+
+.date-box__today-btn, 
+.date-box__tomorrow-btn, 
+.date-box__content {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.date-box__btn_bottom-righ {
+  border-right: 1px solid #c5c4c2;
+}

@@ -21,14 +21,14 @@ class AddTaskBar extends Component {
 
     return (
       <form className="addtask-form" onSubmit={this.handleSubmit}>
-        <label htmlFor="">
+        <label htmlFor="task">
           <input
             type="text"
             name="task"
             className="addtask-form__input"
             value={this.props.typedText}
             onChange={this.handleChange}
-            placeholder="type your task..."/>
+            placeholder="Type your task..."/>
         </label>
       </form>
     );

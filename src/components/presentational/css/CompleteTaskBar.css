@@ -1,0 +1,31 @@
+.complete-task-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f2f1f0;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: margin 0.3s linear;
+}
+
+.complete-task-bar__clear-btn {
+  width: 60%;
+  padding: 0.2rem 1rem;
+  background: inherit;
+  text-align: left;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 2px #d775b2;
+  color: #ada9a9;
+}
+
+.complete-task-bar__clear-btn:hover {
+  box-shadow: 0 0 4px #d775b2;
+}
+
+.complete-task-bar_hidden {
+  margin-bottom: -10vh;
+}
