@@ -4,22 +4,20 @@ import '../css/DeleteButton.css';
 class DeleteButton extends Component {
   constructor(props) {
     super(props);
-    this.handleDeleteButtonClick = this
-      .handleDeleteButtonClick
+    this.handleClick = this
+      .handleClick
       .bind(this);
   }
 
-  handleDeleteButtonClick(e) {
-    this
-      .props
-      .handleDeleteButtonClick();
+  handleClick(e) {
+    this.props.handleDeleteButtonClick(this.props.id);
   }
 
   render() {
     return (
       <button 
         className="delete-btn" 
-        onClick={this.handleDeleteButtonClick}>
+        onClick={this.handleClick}>
         Delete
       </button>
     );

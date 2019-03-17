@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import './AppBody.css';
+import '../css/AppBody.css';
+import TaskList from "./TaskList";
+import AddTaskBar from "../../presentational/js/AddTaskBar";
+import CompleteTaskBar from "../../presentational/js/CompleteTaskBar";
 
 class AppBody extends Component {
   constructor(props) {
@@ -7,11 +10,38 @@ class AppBody extends Component {
     this.state = {
       tasks: [],
       itemCounter: 0,
-      addTaskInputValue: ""
+      addTaskInputValue: "",
+      hideCompletedTask: false,
     };
     
     this.handleAddTaskChange = this.handleAddTaskChange.bind(this);
     this.handleAddTaskSubmit = this.handleAddTaskSubmit.bind(this);
+    this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this);
+    this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
+  }
+  
+  handleCheckBoxChange(id) {
+    
+    this.setState(state => ({
+
+      tasks: state.tasks.map(el => {
+        if (el.id === id) {
+          el.taskItemChecked = !el.taskItemChecked;
+          return el;
+        }
+        console.log(el.id);
+        console.log(id);
+        return el;
+      })
+    }));
+  }
+
+  handleDeleteButtonClick(id) {
+    this.setState(state => ({
+      tasks: state.tasks.filter(el => (
+        el.id !== id
+      ))
+    }));
   }
 
   handleAddTaskChange(value) {
@@ -22,15 +52,26 @@ class AppBody extends Component {
     if (this.state.addTaskInputValue.length) {
       this.setState((state) => (
         {
-          tasks: state.tasks.push({
+          tasks: state.tasks.concat([{
             text: state.addTaskInputValue,
-            id: new Data()
-          }),
+            id: new Date().toLocaleTimeString(),
+            taskItemChecked: false
+          }]),
           itemCounter: state.itemCounter++,
           addTaskInputValue: ""
-      }
+        }
       ));
     }
+  }
+  
+  handleCompleteButton() {
+    this.setState(state => ({
+      hideCompletedTask: !state.hideCompletedTask
+    }));
+  }
+
+  componentDidMount() {
+    console.log(this.state.tasks.length);
   }
 
   render() {
@@ -38,9 +79,16 @@ class AppBody extends Component {
       <div className="app-body">
         <AddTaskBar 
           handleTaskChange={this.handleAddTaskChange}
+          handleTaskSubmit={this.handleAddTaskSubmit}
           typedText={this.state.addTaskInputValue}/>
-        <TaskList taskItems={this.state.tasks}/>
-        <CompleteTaskBar/>
+        <TaskList 
+          taskItems={this.state.tasks}
+          handleDeleteButtonClick={this.handleDeleteButtonClick}
+          hideItem={this.state.hideCompletedTask}
+          handleCheckBoxChange={this.handleCheckBoxChange}
+          />
+        <CompleteTaskBar 
+          handleCompleteButton={this.handleCompleteButton}/>
       </div>
     );
   }

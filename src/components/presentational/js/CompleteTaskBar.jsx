@@ -7,8 +7,8 @@ class CompleteTaskBar extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleChange(e) {
-    this.props.handleCompleteTaskBarClick();
+  handleClick(e) {
+    this.props.handleCompleteButton();
   }
 
   render() {
@@ -16,7 +16,7 @@ class CompleteTaskBar extends Component {
       <div className="complete-task-bar">
         <button 
           className="complete-task-bar__clear-btn"
-          onClick={this.handleChange}>
+          onClick={this.handleClick}>
           Done{this.props.doneTaskCounter}
         </button>
       </div>

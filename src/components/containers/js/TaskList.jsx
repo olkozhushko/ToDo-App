@@ -1,18 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
+import TaskItem from './TaskItem';
 import '../css/TaskList.css';
 
-const TaskList = ({ taskItems }) => {
-  let isHidden = taskItems.length ? true : false;
+const TaskList = ({ taskItems, handleDeleteButtonClick, hideItem, handleCheckBoxChange }) => {
   let items;
 
   if (taskItems.length) {
     items = taskItems.map(el => {
-      return <ListItem key={el.id} text={el.text} />
+      return <TaskItem 
+        key={el.id} 
+        text={el.text} 
+        id={el.id}
+        taskItemChecked={el.taskItemChecked}
+        handleDeleteButtonClick={handleDeleteButtonClick}
+        hideItem={hideItem}
+        handleCheckBoxChange={handleCheckBoxChange}
+        />
     });
   } else {
     items = [];
   }
 
+  let isHidden = !taskItems.length;
+  
   return (
     <ul 
       className="task-list" 

@@ -1,25 +1,41 @@
-import React, {Components} from "react";
-import './TaskBody.css';
-import Notes from '../../presentational/js/Nodes';
+import React, { Component } from "react";
+import '../css/TaskBody.css';
+import Notes from '../../presentational/js/Notes';
 import DueDateTab from '../../presentational/js/DueDateTab';
 import PrioritySelectTab from '../../presentational/js/PrioritySelectTab';
 import DeleteButton from '../../presentational/js/DeleteButton';
 
-const TaskBody = ({handleTextNoteChange, handleDueDateChange, handleSelectTabChange, handleDeleteButtonClick,
-textNoteValue, DueDataValue, priorityColor}) => (
-  <div className="task-body">
-    <Notes 
-      handleTextNoteChange={handleTextNoteChange}
-      textNoteValue={textNoteValue}/>
-    <DueDateTab 
-      handleDueDateChange={handleDueDateChange}
-      DueDataValue={DueDataValue}/>
-    <PrioritySelectTab 
-      color={priorityColor}
-      handleSelectTabChange={handleSelectTabChange}/>
-    <DeleteButton 
-      handleDeleteButtonClick={handleDeleteButtonClick}/>
-  </div>
-);
+class TaskBody extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this
+      .handleClick
+      .bind(this);
+  }
+
+  handleClick(e) {
+    this.props.handleTaskBodyClick(e);
+  }
+  render() {
+
+    let {itemStateData, handleChange, handleDeleteButtonClick} = this.props;
+
+    return (
+      <div
+        className="task-body"
+        hidden={itemStateData.taskBodyHidden}
+        onClick={this.handleClick}>
+        <Notes handleChange={handleChange} textNoteValue={itemStateData.textNoteValue}/>
+        <DueDateTab handleChange={handleChange} dateValue={itemStateData.dueDateValue}/>
+        <PrioritySelectTab
+          color={itemStateData.priorityColor}
+          handleChange={handleChange}/>
+        <DeleteButton
+          id={itemStateData.id}
+          handleDeleteButtonClick={handleDeleteButtonClick}/>
+      </div>
+    );
+  }
+}
 
 export default TaskBody;
