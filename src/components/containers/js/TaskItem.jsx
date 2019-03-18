@@ -9,11 +9,9 @@ class TaskItem extends Component {
       deleteButtonClassName: "",
       textNoteValue: "",
       dueDateValue: "",
-      taskBodyHidden: true,
       priorityColor: "",
       selectValue: "",
-      id: this.props.id,
-      arrowOpenTaskBody: false
+      id: this.props.id
     }
 
     this.handleChange = this
@@ -28,19 +26,25 @@ class TaskItem extends Component {
   }
 
   handleTaskBodyClick(e) {
-    if (e.target && e.target.tagName === "DIV") {
-      this.setState(state => ({
-        taskBodyHidden: !state.taskBodyHidden,
-      }));
+    const elName = e.target.tagName;
+    
+    switch(elName) {
+      case "TEXTAREA":
+      case "INPUT":
+      case "BUTTON":
+      case "SELECT":
+        return;
+      default:
+       break;
     }
+    
+    console.log(elName);
+    this.props.handleTaskBodyClick(this.props.id);
   }
 
   handleHeaderClick(e) {
     if (e.target.tagName !== "INPUT") {
-      this.setState(state => ({
-        taskBodyHidden: !state.taskBodyHidden,
-        arrowOpenTaskBody: !state.arrowOpenTaskBody
-      }));
+      this.props.handleTaskItemClick(this.props.id);
     }
   }
 
@@ -70,7 +74,6 @@ class TaskItem extends Component {
         </del>
       : <span className="task-list__text">{this.props.text}</span>);
     
-    console.log(hiddenItem);
     return (
       <li
         className={hiddenItem ? 
@@ -84,10 +87,11 @@ class TaskItem extends Component {
           id={this.state.id}
           checked={checked}
           itemContent={itemContent}
-          arrowOpenTaskBody={this.state.arrowOpenTaskBody}/>
+          arrowOpenTaskBody={this.props.arrowOpenTaskBody}/>
 
         <TaskBody
           itemStateData={this.state}
+          isBodyHidden={this.props.isBodyHidden}
           handleTaskBodyClick={this.handleTaskBodyClick}
           handleChange={this.handleChange}
           handleDeleteButtonClick={this.props.handleDeleteButtonClick}/>
@@ -120,8 +124,8 @@ class TaskItemHeader extends Component {
 
   render() {
     const caretIconClassName = (this.props.arrowOpenTaskBody ?
-    "fas fa-caret-down task-list__caretup-icon" : 
-    "fas fa-caret-up task-list__caretup-icon");
+    "fas fa-caret-up task-list__caretup-icon" : 
+    "fas fa-caret-down task-list__caretup-icon");
 
     return (
       <div className="task-list__item-header" onClick={this.handleHeaderClick}>
@@ -133,7 +137,8 @@ class TaskItemHeader extends Component {
           name="task"
           className="task-list__checkbox"
           checked={this.props.checked}
-          onChange={this.handleChange}/> {this.props.itemContent}
+          onChange={this.handleChange}/> 
+          {this.props.itemContent}
 
         <i className={caretIconClassName}></i>
       </div>

@@ -18,12 +18,11 @@
   text-align: left;
   border: none;
   outline: none;
-  box-shadow: 0 0 2px #d775b2;
-  color: #ada9a9;
+  color: #4d4848;
 }
 
 .complete-task-bar__clear-btn:hover {
-  box-shadow: 0 0 4px #d775b2;
+  box-shadow: 0 0 4px #dbcbd5;
 }
 
 .complete-task-bar_hidden {

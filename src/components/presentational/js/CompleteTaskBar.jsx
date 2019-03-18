@@ -21,7 +21,7 @@ class CompleteTaskBar extends Component {
         <button 
           className="complete-task-bar__clear-btn"
           onClick={this.handleClick}>
-          Done ({this.props.doneTasksCounter})
+          Done ({this.props.doneTasksCounter}) - Click to hide done tasks
         </button>
       </div>
     );

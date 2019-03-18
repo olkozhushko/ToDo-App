@@ -2,7 +2,7 @@ import React from "react";
 import TaskItem from './TaskItem';
 import '../css/TaskList.css';
 
-const TaskList = ({ taskItems, handleDeleteButtonClick, hideItem, handleCheckBoxChange }) => {
+const TaskList = ({ handleTaskBodyClick, taskItems, handleDeleteButtonClick, hideItem, handleCheckBoxChange, handleTaskItemClick }) => {
   let items;
 
   if (taskItems.length) {
@@ -11,11 +11,14 @@ const TaskList = ({ taskItems, handleDeleteButtonClick, hideItem, handleCheckBox
         key={el.id} 
         text={el.text} 
         id={el.id}
+        isBodyHidden={el.isBodyHidden}
+        arrowOpenTaskBody={el.arrowOpenTaskBody}
         taskItemChecked={el.taskItemChecked}
         handleDeleteButtonClick={handleDeleteButtonClick}
         hideItem={hideItem}
         handleCheckBoxChange={handleCheckBoxChange}
-        />
+        handleTaskItemClick={handleTaskItemClick}
+        handleTaskBodyClick={handleTaskBodyClick}/>
     });
   } else {
     items = [];

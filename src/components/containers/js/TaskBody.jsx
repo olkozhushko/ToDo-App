@@ -19,9 +19,9 @@ class TaskBody extends Component {
       .handleTaskBodyClick(e);
   }
   render() {
-    let {itemStateData, handleChange, handleDeleteButtonClick} = this.props;
+    let {isBodyHidden, itemStateData, handleChange, handleDeleteButtonClick} = this.props;
 
-    const hidden = (itemStateData.taskBodyHidden ? 
+    const hidden = (isBodyHidden ? 
       "task-body task-body_hidden" : "task-body");
 
     return (
