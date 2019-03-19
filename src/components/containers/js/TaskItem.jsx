@@ -8,10 +8,10 @@ class TaskItem extends Component {
     this.state = {
       deleteButtonClassName: "",
       textNoteValue: "",
-      dueDateValue: "",
-      priorityColor: "",
+      dueDateValue: "19.03.2019",
       selectValue: "",
-      id: this.props.id
+      id: this.props.id,
+      
     }
 
     this.handleChange = this
@@ -79,7 +79,8 @@ class TaskItem extends Component {
         className={hiddenItem ? 
           "task-list__item task-list__item_hidden" : 
           "task-list__item"}
-        onClick={this.handleTaskItemClick}>
+        onClick={this.handleTaskItemClick}
+        data-priority={this.state.selectValue}>
 
         <TaskItemHeader
           handleCheckBoxChange={this.props.handleCheckBoxChange}

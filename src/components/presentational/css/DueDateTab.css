@@ -1,21 +1,18 @@
 .date-box {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
-.date-box__tab {
-  background: #f1f0ef;
-  border-radius: var(--box-radius);
+.tab-text {
+  font: 1rem/1.5rem helvetica, sans-serif;
+  color: rgb(124, 115, 115);
+  display: inline-block;
+  margin-bottom: 0.2rem;
 }
 
-.date-box__today-btn, 
-.date-box__tomorrow-btn, 
-.date-box__content {
-  background: none;
-  border: none;
-  outline: none;
+.task-body__tab_date-padding {
+  padding: 0;
 }
+ 
 
-.date-box__btn_bottom-righ {
-  border-right: 1px solid #c5c4c2;
-}
+

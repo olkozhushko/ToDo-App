@@ -29,17 +29,17 @@ class TaskBody extends Component {
         className={hidden}
         onClick={this.handleClick}>
 
-        <Notes handleChange={handleChange} textNoteValue={itemStateData.textNoteValue}/>
+        <Notes 
+          handleChange={handleChange} 
+          textNoteValue={itemStateData.textNoteValue}/>
 
-        <div className="date-box">
-          <DueDateTab handleChange={handleChange} dateValue={itemStateData.dueDateValue}/>
-        </div>
+        <DueDateTab 
+          handleChange={handleChange} 
+          dateValue={itemStateData.dueDateValue}/>
 
-        <div className="task-body__select-box">
-          <PrioritySelectTab
-            color={itemStateData.priorityColor}
-            handleChange={handleChange}/>
-        </div>
+        <PrioritySelectTab
+          color={itemStateData.priorityColor}
+          handleChange={handleChange}/>
 
         <div className="task-body__btn-box">
           <DeleteButton

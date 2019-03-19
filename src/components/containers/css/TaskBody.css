@@ -26,7 +26,8 @@
 
 .task-body__select-box {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .task-body_hidden {

@@ -15,13 +15,18 @@
   border-radius: var(--box-radius, 2px);
 }
 
-.addtask-form::before {
+.addtask-form__add-sign {
   content: "+";
-  display: inline;
   font: 400 1.5rem/2.5rem helvetica;
   vertical-align: middle;
   color: rgb(27, 25, 25);
   position: absolute;
   left: 1.1rem;
   top: 0;
+  transition: .2s all linear;
+}
+
+.addtask-form__add-sign:hover {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
 }

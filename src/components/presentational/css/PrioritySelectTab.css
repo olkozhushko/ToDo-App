@@ -1,4 +1,4 @@
-.task-body__select-tab {
+.task-body__tab {
   width: 100%;
   padding: 0.2rem;
   font: 0.9rem/1.4rem helvetica, arial;
@@ -8,6 +8,10 @@
   transition: all 0.1s linear;
 }
 
-.task-body__select-tab:hover {
+.task-body__tab_date-padding {
+  padding: 0;
+}
+
+.task-body__tab:hover {
   box-shadow: var(--st-shadow, 1px);
 }

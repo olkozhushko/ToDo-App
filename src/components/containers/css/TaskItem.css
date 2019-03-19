@@ -12,7 +12,15 @@
 .task-list__text {
   margin-left: 1rem;
   font: 1rem/1rem helvetica;
+  /* display: inline-block;
+  padding: 2px 3px; */
 }
+
+/* .task-list__text:hover {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  background: rgb(253, 251, 251);
+} */
 
 .task-list__bars-icon {
   font-size: 0.7rem;
@@ -35,4 +43,16 @@
 
 .task-list__item_hidden {
   display: none;
+}
+
+.task-list__item[data-priority="Low"] {
+  border-left: 4px solid green;
+}
+
+.task-list__item[data-priority="Medium"] {
+  border-left: 4px solid yellow;
+}
+
+.task-list__item[data-priority="High"] {
+  border-left: 4px solid red;
 }

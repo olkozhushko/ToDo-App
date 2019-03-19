@@ -15,14 +15,17 @@
   width: 60%;
   padding: 0.2rem 1rem;
   background: inherit;
+  box-shadow: 0 0 2px #999196;
   text-align: left;
   border: none;
   outline: none;
   color: #4d4848;
+  transition: all 0.2s linear;
 }
 
 .complete-task-bar__clear-btn:hover {
-  box-shadow: 0 0 4px #dbcbd5;
+  box-shadow: 0 0 6px #999196;
+  background: #eceae7;
 }
 
 .complete-task-bar_hidden {

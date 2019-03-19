@@ -1,8 +1,9 @@
 .app-body {
   width: 60%;
-  padding-top: 1rem;
+  padding: 1rem 0 4rem 0;
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
+
 }
 
 

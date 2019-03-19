@@ -13,21 +13,15 @@ class DueDateTab extends Component {
 
   render() {
     return (
-      <span className="date-box__tab">
-        <input 
-          type="button" 
-          value="Today" 
-          className="date-box__today-btn .date-box__btn_bottom-righ"/>
-        <input 
-          type="button" 
-          value="Tomorrow" 
-          className="date-box__tomorrow-btn .date-box__btn_bottom-right"/>
+      <div className="date-box">
+        <span className="tab-text">Due Date</span>
         <input
           type="date"
-          value={this.props.dateValue}
+          // value={this.props.dateValue}
+          value="2019-03-19"
           onChange={this.handleChange}
-          className="date-box__content"/>
-      </span>
+          className="task-body__tab task-body__tab_date-padding"/>
+      </div>
     );
   }
 }
