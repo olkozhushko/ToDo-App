@@ -12,15 +12,7 @@
 .task-list__text {
   margin-left: 1rem;
   font: 1rem/1rem helvetica;
-  /* display: inline-block;
-  padding: 2px 3px; */
 }
-
-/* .task-list__text:hover {
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  background: rgb(253, 251, 251);
-} */
 
 .task-list__bars-icon {
   font-size: 0.7rem;
@@ -32,6 +24,14 @@
   font-size: 1rem;
   position: absolute;
   right: 1rem;
+}
+
+.task-list__date {
+  position: absolute;
+  right: 3rem;
+  align-self: flex-end;
+  font: 0.8rem/1.4rem helvetica, sans-serif;
+  color: rgb(218, 209, 209);
 }
 
 .task-list__item-header {

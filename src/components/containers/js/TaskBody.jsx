@@ -6,18 +6,6 @@ import PrioritySelectTab from '../../presentational/js/PrioritySelectTab';
 import DeleteButton from '../../presentational/js/DeleteButton';
 
 class TaskBody extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this
-      .handleClick
-      .bind(this);
-  }
-
-  handleClick(e) {
-    this
-      .props
-      .handleTaskBodyClick(e);
-  }
   render() {
     let {isBodyHidden, itemStateData, handleChange, handleDeleteButtonClick} = this.props;
 
@@ -26,8 +14,7 @@ class TaskBody extends Component {
 
     return (
       <div
-        className={hidden}
-        onClick={this.handleClick}>
+        className={hidden}>
 
         <Notes 
           handleChange={handleChange} 

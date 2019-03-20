@@ -9,6 +9,7 @@ class TaskItem extends Component {
       deleteButtonClassName: "",
       textNoteValue: "",
       dueDateValue: this.defineInitialDate(),
+      indicatedDate: "",
       selectValue: "",
       id: this.props.id,
       
@@ -17,29 +18,9 @@ class TaskItem extends Component {
     this.handleChange = this
       .handleChange
       .bind(this);
-    this.handleTaskBodyClick = this
-      .handleTaskBodyClick
-      .bind(this);
     this.handleHeaderClick = this
       .handleHeaderClick
       .bind(this);
-  }
-
-  handleTaskBodyClick(e) {
-    const elName = e.target.tagName;
-    
-    switch(elName) {
-      case "TEXTAREA":
-      case "INPUT":
-      case "BUTTON":
-      case "SELECT":
-        return;
-      default:
-       break;
-    }
-    
-    console.log(elName);
-    this.props.handleTaskBodyClick(this.props.id);
   }
 
   handleHeaderClick(e) {
@@ -57,7 +38,10 @@ class TaskItem extends Component {
         this.setState({selectValue: target.value});
         break;
       case "INPUT":
-        this.setState({dueDateValue: target.value});
+        this.setState({
+          dueDateValue: target.value,
+          indicatedDate: target.value
+        });
         break;
       default:
         this.setState({dueDateValue: "", selectValue: "", textNoteValue: ""});
@@ -102,7 +86,8 @@ class TaskItem extends Component {
           id={this.state.id}
           checked={checked}
           itemContent={itemContent}
-          arrowOpenTaskBody={this.props.arrowOpenTaskBody}/>
+          arrowOpenTaskBody={this.props.arrowOpenTaskBody}
+          dateValue={this.state.indicatedDate}/>
 
         <TaskBody
           itemStateData={this.state}
@@ -153,8 +138,9 @@ class TaskItemHeader extends Component {
           className="task-list__checkbox"
           checked={this.props.checked}
           onChange={this.handleChange}/> 
-          {this.props.itemContent}
 
+        {this.props.itemContent}
+        <span className="task-list__date">{this.props.dateValue}</span>
         <i className={caretIconClassName}></i>
       </div>
 

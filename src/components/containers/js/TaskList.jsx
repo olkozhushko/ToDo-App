@@ -17,8 +17,7 @@ const TaskList = ({ handleTaskBodyClick, taskItems, handleDeleteButtonClick, hid
         handleDeleteButtonClick={handleDeleteButtonClick}
         hideItem={hideItem}
         handleCheckBoxChange={handleCheckBoxChange}
-        handleTaskItemClick={handleTaskItemClick}
-        handleTaskBodyClick={handleTaskBodyClick}/>
+        handleTaskItemClick={handleTaskItemClick} />
     });
   } else {
     items = [];

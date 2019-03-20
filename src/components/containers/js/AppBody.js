@@ -21,7 +21,7 @@ class AppBody extends Component {
     this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
     this.handleCompleteButton = this.handleCompleteButton.bind(this);
     this.handleTaskItemClick = this.handleTaskItemClick.bind(this);
-    this.handleTaskBodyClick = this.handleTaskBodyClick.bind(this);
+    
   }
   
   handleCheckBoxChange(id) {
@@ -98,21 +98,6 @@ class AppBody extends Component {
      }));
   }
 
-  handleTaskBodyClick(id) {
-    //update tasks array namely isBodyHidden state
-    this.setState(state => ({
-      tasks: state.tasks.map(el => {
-        if(el.id === id) {
-          el.isBodyHidden = true;
-          el.arrowOpenTaskBody = false;
-          return el;
-        }
-        
-        return el;
-      })
-    }))
-  }
-  
   handleCompleteButton() {
     this.setState(state => ({
       hideCompletedTask: !state.hideCompletedTask
@@ -128,8 +113,7 @@ class AppBody extends Component {
           handleDeleteButtonClick={this.handleDeleteButtonClick}
           hideItem={this.state.hideCompletedTask}
           handleCheckBoxChange={this.handleCheckBoxChange}
-          handleTaskItemClick={this.handleTaskItemClick}
-          handleTaskBodyClick={this.handleTaskBodyClick}/>
+          handleTaskItemClick={this.handleTaskItemClick} />
         <AddTaskBar 
           handleTaskChange={this.handleAddTaskChange}
           handleTaskSubmit={this.handleAddTaskSubmit}
