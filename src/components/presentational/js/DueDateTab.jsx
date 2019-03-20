@@ -17,8 +17,7 @@ class DueDateTab extends Component {
         <span className="tab-text">Due Date</span>
         <input
           type="date"
-          // value={this.props.dateValue}
-          value="2019-03-19"
+          value={this.props.dateValue}
           onChange={this.handleChange}
           className="task-body__tab task-body__tab_date-padding"/>
       </div>

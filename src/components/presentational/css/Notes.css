@@ -1,6 +1,13 @@
+.note-form__label {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .note-form__area {
   width: 100%;
-  height: 30vh;
+  height: 90%;
   resize: none;
 }
 

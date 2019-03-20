@@ -19,7 +19,7 @@ class Notes extends Component {
   render() {
     return (
       <form className="note-form">
-        <label htmlFor="content">
+        <label htmlFor="content" className="note-form__label">
           <span className="note-form__title">Notes</span>
           <textarea
             id="content"

@@ -8,7 +8,7 @@ class TaskItem extends Component {
     this.state = {
       deleteButtonClassName: "",
       textNoteValue: "",
-      dueDateValue: "19.03.2019",
+      dueDateValue: this.defineInitialDate(),
       selectValue: "",
       id: this.props.id,
       
@@ -62,6 +62,20 @@ class TaskItem extends Component {
       default:
         this.setState({dueDateValue: "", selectValue: "", textNoteValue: ""});
     }
+  }
+
+  defineInitialDate() {
+    let date = new Date();
+
+    let todayYear = date.getFullYear();
+    let todayMonth = (date.getMonth() + 1) < 10 ? 
+    `0${(date.getMonth() + 1)}` : (date.getMonth() + 1);
+    let todayDay = (date.getDate()) < 10 ? 
+    `0${(date.getDate())}` : (date.getDate());
+
+    let initialDate = `${todayYear}-${todayMonth}-${todayDay}`;
+
+    return initialDate;
   }
 
   render() {

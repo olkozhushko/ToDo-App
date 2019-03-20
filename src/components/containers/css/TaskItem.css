@@ -46,13 +46,13 @@
 }
 
 .task-list__item[data-priority="Low"] {
-  border-left: 4px solid green;
+  box-shadow: 4px 0  rgb(134, 243, 134) inset;
 }
 
 .task-list__item[data-priority="Medium"] {
-  border-left: 4px solid yellow;
+  box-shadow: 4px 0  rgb(248, 237, 78) inset;
 }
 
 .task-list__item[data-priority="High"] {
-  border-left: 4px solid red;
+  box-shadow: 4px 0  rgb(226, 27, 103) inset;
 }

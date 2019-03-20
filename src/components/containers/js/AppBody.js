@@ -47,7 +47,7 @@ class AppBody extends Component {
       tasks: state.tasks.filter(el => {
         if (el.id === id) {
 
-          //if deleted value check if it is checked or not
+          //if value deleted check if it is checked or not
           //in order to decide decrease counter doneTasks
 
           if(el.taskItemChecked) {
