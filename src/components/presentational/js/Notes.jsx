@@ -17,8 +17,15 @@ class Notes extends Component {
   }
 
   render() {
+    //if task body hidden define and add class 
+    //to form className to hide it as well.
+
+    let addonClass = this.props.isBodyHidden ? 
+      "note-form_hidden" : "";
+    console.log(addonClass);
+
     return (
-      <form className="note-form">
+      <form className={`note-form ${addonClass}`}>
         <label htmlFor="content" className="note-form__label">
           <span className="note-form__title">Notes</span>
           <textarea

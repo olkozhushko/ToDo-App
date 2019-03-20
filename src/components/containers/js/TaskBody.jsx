@@ -18,7 +18,8 @@ class TaskBody extends Component {
 
         <Notes 
           handleChange={handleChange} 
-          textNoteValue={itemStateData.textNoteValue}/>
+          textNoteValue={itemStateData.textNoteValue}
+          isBodyHidden={isBodyHidden}/>
 
         <DueDateTab 
           handleChange={handleChange} 

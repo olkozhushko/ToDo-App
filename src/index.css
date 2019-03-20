@@ -20,7 +20,7 @@
 #root {
   width: 100%;
   background: 
-  linear-gradient(rgb(250, 175, 175), rgb(213, 213, 241)) 
+  linear-gradient(45deg, rgb(250, 129, 129), rgb(212, 212, 255)) 
   center/cover no-repeat;
 }
 
