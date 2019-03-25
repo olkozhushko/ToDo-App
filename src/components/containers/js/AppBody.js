@@ -67,6 +67,9 @@ class AppBody extends Component {
   
   handleAddTaskSubmit() {
     if (this.state.addTaskInputValue.length) {
+
+
+      const tasks = [];
       this.setState((state) => (
         {
           tasks: state.tasks.concat([{
@@ -103,6 +106,13 @@ class AppBody extends Component {
       hideCompletedTask: !state.hideCompletedTask
     }));
     
+  }
+
+  addToLocaleStorage(obj) {
+    let taskKey = (this.state.tasks.length + 1).toString();
+    
+    //add new task-object to locale storage
+    localStorage.setItem(taskKey, obj);
   }
 
   render() {
