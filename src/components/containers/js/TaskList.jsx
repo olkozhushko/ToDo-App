@@ -2,7 +2,7 @@ import React from "react";
 import TaskItem from './TaskItem';
 import '../css/TaskList.css';
 
-const TaskList = ({ handleTaskBodyClick, taskItems, handleDeleteButtonClick, hideItem, handleCheckBoxChange, handleTaskItemClick }) => {
+const TaskList = ({taskItems, handleDeleteButtonClick, hideItem, handleCheckBoxChange, handleTaskItemClick }) => {
   let items;
 
   if (taskItems.length) {
