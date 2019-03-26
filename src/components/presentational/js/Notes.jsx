@@ -22,7 +22,6 @@ class Notes extends Component {
 
     let addonClass = this.props.isBodyHidden ? 
       "note-form_hidden" : "";
-    console.log(addonClass);
 
     return (
       <form className={`note-form ${addonClass}`}>

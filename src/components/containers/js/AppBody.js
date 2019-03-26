@@ -43,6 +43,9 @@ class AppBody extends Component {
   }
 
   handleDeleteButtonClick(id) {
+
+    this.deleteFromLocaleStorage(id);
+
     this.setState(state => ({
       tasks: state.tasks.filter(el => {
         if (el.id === id) {
@@ -57,7 +60,8 @@ class AppBody extends Component {
         } else {
           return true;
         }
-      })
+      }),
+      itemCounter: --state.itemCounter
     }));
   }
 
@@ -68,8 +72,6 @@ class AppBody extends Component {
   handleAddTaskSubmit() {
     if (this.state.addTaskInputValue.length) {
 
-
-      const tasks = [];
       this.setState((state) => (
         {
           tasks: state.tasks.concat([{
@@ -79,7 +81,7 @@ class AppBody extends Component {
             isBodyHidden: true,
             arrowOpenTaskBody: false,
           }]),
-          itemCounter: state.itemCounter++,
+          itemCounter: ++state.itemCounter,
           addTaskInputValue: ""
         }
       ));
@@ -108,12 +110,50 @@ class AppBody extends Component {
     
   }
 
-  addToLocaleStorage(obj) {
-    let taskKey = (this.state.tasks.length + 1).toString();
-    
-    //add new task-object to locale storage
-    localStorage.setItem(taskKey, obj);
+  deleteFromLocaleStorage(id) {
+    let key = id.toString();
+
+    localStorage.removeItem(key);
   }
+
+  extractTaskFromLocaleStorage() {
+    let keys = Object.keys(localStorage);
+    
+    let items = [];
+
+    //loop through locale storage 
+    for(let key of keys) {
+      let value = localStorage.getItem(key);
+
+      value = JSON.parse(value);
+
+      items.push(value);
+    }
+
+    return items;
+  }
+
+  componentDidMount() {
+    let elems = this.extractTaskFromLocaleStorage();
+    this.setState({
+      tasks: elems,
+      itemCounter: elems.length
+    })
+
+  }
+
+  componentDidUpdate() {
+    if(this.state.itemCounter > localStorage.length) {
+      let elem = this.state.tasks[this.state.itemCounter - 1];
+
+      let key = elem.id.toString();
+      elem = JSON.stringify(elem);
+
+      localStorage.setItem(key, elem);
+    }
+    
+  }
+
 
   render() {
     return (
