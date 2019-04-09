@@ -1,26 +1,12 @@
-import React, {Component} from "react";
+import React from "react";
 import '../css/Notes.css';
 
-class Notes extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this
-      .handleChange
-      .bind(this);
+const Notes = ({textNoteValue, onChange, isBodyHidden}) => {
 
-  }
+    //if task body hidden define class and add 
+    //to form "className" to hide it as well.
 
-  handleChange(e) {
-    this
-      .props
-      .handleChange(e.target);
-  }
-
-  render() {
-    //if task body hidden define and add class 
-    //to form className to hide it as well.
-
-    let addonClass = this.props.isBodyHidden ? 
+    let addonClass = isBodyHidden ? 
       "note-form_hidden" : "";
 
     return (
@@ -29,13 +15,13 @@ class Notes extends Component {
           <span className="note-form__title">Notes</span>
           <textarea
             id="content"
-            value={this.props.textNoteValue}
+            value={textNoteValue}
             className="note-form__area"
-            onChange={this.handleChange}/>
+            onChange={onChange}/>
         </label>
       </form>
     );
   }
-}
+
 
 export default Notes;

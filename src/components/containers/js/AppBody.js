@@ -19,7 +19,7 @@ class AppBody extends Component {
     this.handleAddTaskSubmit = this.handleAddTaskSubmit.bind(this);
     this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this);
     this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
-    this.handleCompleteButton = this.handleCompleteButton.bind(this);
+    this.handleCompleteButtonClick = this.handleCompleteButtonClick.bind(this);
     this.handleTaskItemClick = this.handleTaskItemClick.bind(this);
     
   }
@@ -65,11 +65,13 @@ class AppBody extends Component {
     }));
   }
 
-  handleAddTaskChange(value) {
-    this.setState({addTaskInputValue: value});
+  handleAddTaskChange(e) {
+    this.setState({addTaskInputValue: e.target.value});
   }
   
-  handleAddTaskSubmit() {
+  handleAddTaskSubmit(e) {
+    e.preventDefault();
+
     if (this.state.addTaskInputValue.length) {
 
       this.setState((state) => (
@@ -103,7 +105,7 @@ class AppBody extends Component {
      }));
   }
 
-  handleCompleteButton() {
+  handleCompleteButtonClick() {
     this.setState(state => ({
       hideCompletedTask: !state.hideCompletedTask
     }));
@@ -160,16 +162,16 @@ class AppBody extends Component {
       <div className="app-body">
         <TaskList 
           taskItems={this.state.tasks}
-          handleDeleteButtonClick={this.handleDeleteButtonClick}
+          onDeleteButtonClick={this.handleDeleteButtonClick}
           hideItem={this.state.hideCompletedTask}
-          handleCheckBoxChange={this.handleCheckBoxChange}
-          handleTaskItemClick={this.handleTaskItemClick} />
+          onCheckBoxChange={this.handleCheckBoxChange}
+          onTaskItemClick={this.handleTaskItemClick} />
         <AddTaskBar 
-          handleTaskChange={this.handleAddTaskChange}
-          handleTaskSubmit={this.handleAddTaskSubmit}
+          onTaskChange={this.handleAddTaskChange}
+          onTaskSubmit={this.handleAddTaskSubmit}
           typedText={this.state.addTaskInputValue}/>
         <CompleteTaskBar 
-          handleCompleteButton={this.handleCompleteButton}
+          onClick={this.handleCompleteButtonClick}
           doneTasksCounter={this.state.checkedItemNumber}/>
       </div>
     );

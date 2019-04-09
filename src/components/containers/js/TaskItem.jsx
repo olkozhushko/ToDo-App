@@ -1,18 +1,18 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import TaskBody from "./TaskBody";
 import '../css/TaskItem.css';
 
 class TaskItem extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       deleteButtonClassName: "",
       textNoteValue: "",
       dueDateValue: this.defineInitialDate(),
       indicatedDate: "",
       selectValue: "",
-      id: this.props.id,
-      
+      id: this.props.id
     }
 
     this.handleChange = this
@@ -25,37 +25,39 @@ class TaskItem extends Component {
 
   handleHeaderClick(e) {
     if (e.target.tagName !== "INPUT") {
-      this.props.handleTaskItemClick(this.props.id);
+      this.props.onTaskItemClick(this.props.id);
     }
   }
 
-  handleChange(target) {
-    switch (target.tagName) {
+  handleChange(e) {
+    switch (e.target.tagName) {
       case "TEXTAREA":
-        this.setState({textNoteValue: target.value});
+        this.setState({ textNoteValue: e.target.value });
         break;
       case "SELECT":
-        this.setState({selectValue: target.value});
+        this.setState({ selectValue: e.target.value });
         break;
       case "INPUT":
         this.setState({
-          dueDateValue: target.value,
-          indicatedDate: target.value
+          dueDateValue: e.target.value,
+          indicatedDate: e.target.value
         });
         break;
       default:
-        this.setState({dueDateValue: "", selectValue: "", textNoteValue: ""});
+        this.setState({ dueDateValue: "", selectValue: "", textNoteValue: "" });
     }
   }
+
+  //define initial date to display it on todo item
 
   defineInitialDate() {
     let date = new Date();
 
     let todayYear = date.getFullYear();
-    let todayMonth = (date.getMonth() + 1) < 10 ? 
-    `0${(date.getMonth() + 1)}` : (date.getMonth() + 1);
-    let todayDay = (date.getDate()) < 10 ? 
-    `0${(date.getDate())}` : (date.getDate());
+    let todayMonth = (date.getMonth() + 1) < 10 ?
+      `0${(date.getMonth() + 1)}` : (date.getMonth() + 1);
+    let todayDay = (date.getDate()) < 10 ?
+      `0${(date.getDate())}` : (date.getDate());
 
     let initialDate = `${todayYear}-${todayMonth}-${todayDay}`;
 
@@ -68,84 +70,62 @@ class TaskItem extends Component {
     const checked = this.props.taskItemChecked;
     const itemContent = (this.props.taskItemChecked
       ? <del>
-          <span className="task-list__text">{this.props.text}</span>
-        </del>
+        <span className="task-list__text">{this.props.text}</span>
+      </del>
       : <span className="task-list__text">{this.props.text}</span>);
-    
+
     return (
       <li
-        className={hiddenItem ? 
-          "task-list__item task-list__item_hidden" : 
+        className={hiddenItem ?
+          "task-list__item task-list__item_hidden" :
           "task-list__item"}
         onClick={this.handleTaskItemClick}
         data-priority={this.state.selectValue}>
 
         <TaskItemHeader
-          handleCheckBoxChange={this.props.handleCheckBoxChange}
-          handleHeaderClick={this.handleHeaderClick}
+          onCheckBoxChange={this.props.onCheckBoxChange}
+          onHeaderClick={this.handleHeaderClick}
           id={this.state.id}
           checked={checked}
           itemContent={itemContent}
           arrowOpenTaskBody={this.props.arrowOpenTaskBody}
-          dateValue={this.state.indicatedDate}/>
+          dateValue={this.state.indicatedDate} />
 
         <TaskBody
           itemStateData={this.state}
           isBodyHidden={this.props.isBodyHidden}
-          handleTaskBodyClick={this.handleTaskBodyClick}
-          handleChange={this.handleChange}
-          handleDeleteButtonClick={this.props.handleDeleteButtonClick}/>
+          onTaskBodyClick={this.handleTaskBodyClick}
+          onChange={this.handleChange}
+          onDeleteButtonClick={this.props.onDeleteButtonClick} />
       </li>
     );
   }
 }
 
-class TaskItemHeader extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this
-      .handleChange
-      .bind(this);
+const TaskItemHeader = ({ itemContent, dateValue, checked, arrowOpenTaskBody, onHeaderClick, onCheckBoxChange, id }) => {
 
-    this.handleHeaderClick = this
-      .handleHeaderClick
-      .bind(this);
-  }
+  const caretIconClassName = arrowOpenTaskBody ?
+    "fas fa-caret-up task-list__caretup-icon" :
+    "fas fa-caret-down task-list__caretup-icon";
 
-  handleHeaderClick(e) {
-    this.props.handleHeaderClick(e);
-  }
+  return (
+    <div className="task-list__item-header" onClick={onHeaderClick}>
 
-  handleChange(e) {
-    this
-      .props
-      .handleCheckBoxChange(this.props.id);
-  }
+      <i className="fas fa-bars task-list__bars-icon"></i>
+      <input
+        type="checkbox"
+        name="task"
+        className="task-list__checkbox"
+        checked={checked}
+        onChange={() => onCheckBoxChange(id)} />
 
-  render() {
-    const caretIconClassName = (this.props.arrowOpenTaskBody ?
-    "fas fa-caret-up task-list__caretup-icon" : 
-    "fas fa-caret-down task-list__caretup-icon");
+      {itemContent}
+      <span className="task-list__date">{dateValue}</span>
+      <i className={caretIconClassName}></i>
 
-    return (
-      <div className="task-list__item-header" onClick={this.handleHeaderClick}>
+    </div>
 
-        <i className="fas fa-bars task-list__bars-icon"></i>
-
-        <input
-          type="checkbox"
-          name="task"
-          className="task-list__checkbox"
-          checked={this.props.checked}
-          onChange={this.handleChange}/> 
-
-        {this.props.itemContent}
-        <span className="task-list__date">{this.props.dateValue}</span>
-        <i className={caretIconClassName}></i>
-      </div>
-
-    )
-  }
+  )
 }
 
 export default TaskItem;

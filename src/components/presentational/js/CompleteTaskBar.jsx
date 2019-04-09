@@ -1,31 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import "../css/CompleteTaskBar.css";
 
-class CompleteTaskBar extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
+const CompleteTaskBar = ({ doneTasksCounter, onClick }) => {
 
-  handleClick(e) {
-    this.props.handleCompleteButton();
-  }
+  const className = doneTasksCounter ?
+    "complete-task-bar" :
+    "complete-task-bar complete-task-bar_hidden";
 
-  render() {
-    const className = (this.props.doneTasksCounter ? 
-      "complete-task-bar" :
-      "complete-task-bar complete-task-bar_hidden");
-
-    return (
-      <div className={className}>
-        <button 
-          className="complete-task-bar__clear-btn"
-          onClick={this.handleClick}>
-          Done ({this.props.doneTasksCounter}) - Click to hide done tasks
+  return (
+    <div className={className}>
+      <button
+        className="complete-task-bar__clear-btn"
+        onClick={onClick}>
+        Done ({doneTasksCounter}) - Click to hide done tasks
         </button>
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default CompleteTaskBar;
