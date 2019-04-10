@@ -9,7 +9,6 @@ class AppBody extends Component {
     super(props);
     this.state = {
       tasks: [],
-      itemCounter: 0,
       addTaskInputValue: "",
       hideCompletedTask: false,
       checkedItemNumber: 0
@@ -21,6 +20,7 @@ class AppBody extends Component {
     this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
     this.handleCompleteButtonClick = this.handleCompleteButtonClick.bind(this);
     this.handleTaskItemClick = this.handleTaskItemClick.bind(this);
+    this.handleTextNoteChange = this.handleTextNoteChange.bind(this);
     
   }
   
@@ -42,6 +42,21 @@ class AppBody extends Component {
     }));
   }
 
+  handleTextNoteChange(target, id) {
+    
+    this.setState(state => ({
+
+      tasks: state.tasks.map(el => {
+        if (el.id === id) {
+          
+          el.textNoteValue = target.value;
+          return el;
+        }
+        return el;
+      })
+    }))
+  }
+
   handleDeleteButtonClick(id) {
 
     this.deleteFromLocaleStorage(id);
@@ -60,8 +75,7 @@ class AppBody extends Component {
         } else {
           return true;
         }
-      }),
-      itemCounter: --state.itemCounter
+      })
     }));
   }
 
@@ -82,8 +96,8 @@ class AppBody extends Component {
             taskItemChecked: false,
             isBodyHidden: true,
             arrowOpenTaskBody: false,
+            textNoteValue: ""
           }]),
-          itemCounter: ++state.itemCounter,
           addTaskInputValue: ""
         }
       ));
@@ -138,22 +152,21 @@ class AppBody extends Component {
   componentDidMount() {
     let elems = this.extractTaskFromLocaleStorage();
     this.setState({
-      tasks: elems,
-      itemCounter: elems.length
+      tasks: elems
     })
 
   }
 
   componentDidUpdate() {
-    if(this.state.itemCounter > localStorage.length) {
-      let elem = this.state.tasks[this.state.itemCounter - 1];
-
-      let key = elem.id.toString();
-      elem = JSON.stringify(elem);
-
-      localStorage.setItem(key, elem);
-    }
     
+    for(let item of this.state.tasks) {
+      console.log("here");
+      let key = item.id.toString();
+
+      item = JSON.stringify(item);
+
+      localStorage.setItem(key, item);
+    }
   }
 
 
@@ -165,7 +178,8 @@ class AppBody extends Component {
           onDeleteButtonClick={this.handleDeleteButtonClick}
           hideItem={this.state.hideCompletedTask}
           onCheckBoxChange={this.handleCheckBoxChange}
-          onTaskItemClick={this.handleTaskItemClick} />
+          onTaskItemClick={this.handleTaskItemClick} 
+          onTextNoteChange={this.handleTextNoteChange}/>
         <AddTaskBar 
           onTaskChange={this.handleAddTaskChange}
           onTaskSubmit={this.handleAddTaskSubmit}

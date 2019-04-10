@@ -5,7 +5,7 @@ import DueDateTab from '../../presentational/js/DueDateTab';
 import PrioritySelectTab from '../../presentational/js/PrioritySelectTab';
 import DeleteButton from '../../presentational/js/DeleteButton';
 
-const TaskBody = ({ isBodyHidden, itemStateData, onChange, onDeleteButtonClick }) => {
+const TaskBody = ({ textNoteValue, isBodyHidden, itemStateData, onChange, onDeleteButtonClick, onTextNoteChange }) => {
 
   const hidden = (isBodyHidden ?
     "task-body task-body_hidden" : "task-body");
@@ -15,9 +15,10 @@ const TaskBody = ({ isBodyHidden, itemStateData, onChange, onDeleteButtonClick }
       className={hidden}>
 
       <Notes
-        onChange={onChange}
-        textNoteValue={itemStateData.textNoteValue}
-        isBodyHidden={isBodyHidden} />
+        onChange={onTextNoteChange}
+        textNoteValue={textNoteValue}
+        isBodyHidden={isBodyHidden} 
+        id={itemStateData.id}/>
 
       <DueDateTab
         onChange={onChange}

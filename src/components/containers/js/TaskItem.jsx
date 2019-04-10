@@ -8,7 +8,6 @@ class TaskItem extends Component {
 
     this.state = {
       deleteButtonClassName: "",
-      textNoteValue: "",
       dueDateValue: this.defineInitialDate(),
       indicatedDate: "",
       selectValue: "",
@@ -31,9 +30,6 @@ class TaskItem extends Component {
 
   handleChange(e) {
     switch (e.target.tagName) {
-      case "TEXTAREA":
-        this.setState({ textNoteValue: e.target.value });
-        break;
       case "SELECT":
         this.setState({ selectValue: e.target.value });
         break;
@@ -96,7 +92,9 @@ class TaskItem extends Component {
           isBodyHidden={this.props.isBodyHidden}
           onTaskBodyClick={this.handleTaskBodyClick}
           onChange={this.handleChange}
-          onDeleteButtonClick={this.props.onDeleteButtonClick} />
+          onDeleteButtonClick={this.props.onDeleteButtonClick} 
+          onTextNoteChange={this.props.onTextNoteChange}
+          textNoteValue={this.props.textNoteValue}/>
       </li>
     );
   }

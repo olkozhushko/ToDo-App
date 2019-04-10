@@ -1,7 +1,7 @@
 import React from "react";
 import '../css/Notes.css';
 
-const Notes = ({textNoteValue, onChange, isBodyHidden}) => {
+const Notes = ({textNoteValue, onChange, isBodyHidden, id}) => {
 
     //if task body hidden define class and add 
     //to form "className" to hide it as well.
@@ -17,7 +17,8 @@ const Notes = ({textNoteValue, onChange, isBodyHidden}) => {
             id="content"
             value={textNoteValue}
             className="note-form__area"
-            onChange={onChange}/>
+            onChange={(e) => {
+              onChange(e.target, id)}}/>
         </label>
       </form>
     );
