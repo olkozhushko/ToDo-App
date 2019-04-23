@@ -1,12 +1,12 @@
 
 .addtask-form {
   width: 100%;
-  margin: 0 auto;
+  margin: 1.5rem auto 0 auto;
   position: relative;
 }
 
 .addtask-form__input {
-  width: 100%;
+  width: 93%;
   height: 2.5rem;
   padding: 0.4rem 0 0.4rem 3rem;
   line-height: 1.7rem;
@@ -29,4 +29,22 @@
 .addtask-form__add-sign:hover {
   color: rgb(0, 0, 0);
   cursor: pointer;
+}
+
+.addtask-form__submit-btn {
+  width: 7%;
+  height: 2.5rem;
+  background: dodgerblue;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-weight: 600;
+  border-top-right-radius: var(--box-radius, 2px);
+  border-bottom-right-radius: var(--box-radius, 2px);
+  box-shadow: 0 0 0.15rem rgba(0, 0, 0, 0.4) inset;
+}
+
+.addtask-form__submit-btn:hover {
+  background: rgb(24, 135, 247);
 }
