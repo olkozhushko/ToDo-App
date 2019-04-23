@@ -3,6 +3,7 @@ import '../css/AppBody.css';
 import TaskList from "./TaskList";
 import AddTaskBar from "../../presentational/js/AddTaskBar";
 import CompleteTaskBar from "../../presentational/js/CompleteTaskBar";
+import ClearStoryBtn from "../../presentational/js/ClearStoryBtn";
 
 class AppBody extends Component {
   constructor(props) {
@@ -123,7 +124,13 @@ class AppBody extends Component {
     this.setState(state => ({
       hideCompletedTask: !state.hideCompletedTask
     }));
-    
+  }
+
+  handleClearStoryBtnClick() {
+    this.setState({
+      tasks: []
+    })
+    localStorage.clear();
   }
 
   deleteFromLocaleStorage(id) {
@@ -187,6 +194,7 @@ class AppBody extends Component {
         <CompleteTaskBar 
           onClick={this.handleCompleteButtonClick}
           doneTasksCounter={this.state.checkedItemNumber}/>
+        <ClearStoryBtn onClick={() => this.handleClearStoryBtnClick()}/>
       </div>
     );
   }
