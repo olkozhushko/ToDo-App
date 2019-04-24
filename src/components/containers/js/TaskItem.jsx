@@ -1,5 +1,6 @@
 import React from "react";
 import TaskBody from "./TaskBody";
+import PropTypes from "prop-types";
 import "../css/TaskItem.css";
 
 const TaskItem = ({
@@ -65,6 +66,24 @@ const TaskItem = ({
   );
 };
 
+TaskItem.propTypes = {
+  onTaskItemClick: PropTypes.func.isRequired,
+  id: PropTypes.object.isRequired,
+  onDueDateChange: PropTypes.func.isRequired,
+  selectValue: PropTypes.string.isRequired,
+  taskItemChecked: PropTypes.bool.isRequired,
+  hideItem: PropTypes.bool.isRequired,
+  arrowOpenTaskBody: PropTypes.bool.isRequired,
+  dueDateValue: PropTypes.string.isRequired,
+  isBodyHidden: PropTypes.bool.isRequired,
+  onDeleteButtonClick: PropTypes.func.isRequired,
+  onTextNoteChange: PropTypes.func.isRequired,
+  textNoteValue: PropTypes.string.isRequired,
+  onSelectTabChange: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  onCheckBoxChange: PropTypes.func.isRequired
+}
+
 const TaskItemHeader = ({
   itemContent,
   dateValue,
@@ -95,5 +114,15 @@ const TaskItemHeader = ({
     </div>
   );
 };
+
+TaskItemHeader.propTypes = {
+  itemContent: PropTypes.string.isRequired,
+  dateValue: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
+  arrowOpenTaskBody: PropTypes.bool.isRequired,
+  onHeaderClick: PropTypes.func.isRequired,
+  onCheckBoxChange: PropTypes.func.isRequired,
+  id: PropTypes.object.isRequired
+}
 
 export default TaskItem;

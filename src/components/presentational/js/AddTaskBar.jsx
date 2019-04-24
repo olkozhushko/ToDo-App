@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import '../css/AddTaskBar.css';
 
 class AddTaskBar extends Component {
@@ -34,6 +35,12 @@ class AddTaskBar extends Component {
       </form>
     );
   }
+}
+
+AddTaskBar.propTypes = {
+  onTaskSubmit: PropTypes.func.isRequired,
+  onTaskChange: PropTypes.func.isRequired,
+  typedText: PropTypes.string.isRequired
 }
 
 export default AddTaskBar;

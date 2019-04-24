@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import '../css/Notes.css';
 
 const Notes = ({textNoteValue, onChange, isBodyHidden, id}) => {
@@ -24,5 +25,12 @@ const Notes = ({textNoteValue, onChange, isBodyHidden, id}) => {
     );
   }
 
+
+Notes.propTypes = {
+  textNoteValue: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  isBodyHidden: PropTypes.bool.isRequired,
+  id: PropTypes.object.isRequired
+}
 
 export default Notes;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../css/DueDateTab.css";
 
 const DueDateTab = ({ dateValue, onChange, id }) => {
@@ -16,6 +17,12 @@ const DueDateTab = ({ dateValue, onChange, id }) => {
         className="task-body__tab task-body__tab_date-padding" />
     </div>
   );
+}
+
+DueDateTab.proptypes = {
+  dateValue: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  id: PropTypes.object.isRequired
 }
 
 export default DueDateTab;

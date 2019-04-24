@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../css/ClearStoryBtn.css";
 
 const ClearStoryBtn = ({onClick}) => {
@@ -13,6 +14,10 @@ const ClearStoryBtn = ({onClick}) => {
       </button>
     </div>
   )
+}
+
+ClearStoryBtn.propTypes = {
+  onClick: PropTypes.func.isRequired
 }
 
 export default ClearStoryBtn;

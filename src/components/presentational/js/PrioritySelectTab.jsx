@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../css/PrioritySelectTab.css";
 
 const PrioritySelectTab = ({ onChange, selectPriorityValue, id }) => {
@@ -19,5 +20,11 @@ const PrioritySelectTab = ({ onChange, selectPriorityValue, id }) => {
     </div>
   );
 }
+
+PrioritySelectTab.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  selectPriorityValue: PropTypes.string.isRequired,
+  id: PropTypes.object.isRequired
+} 
 
 export default PrioritySelectTab;

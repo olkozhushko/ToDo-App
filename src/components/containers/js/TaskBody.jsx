@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import '../css/TaskBody.css';
 import Notes from '../../presentational/js/Notes';
 import DueDateTab from '../../presentational/js/DueDateTab';
@@ -37,6 +38,19 @@ const TaskBody = ({ textNoteValue, isBodyHidden, id, onDeleteButtonClick, onText
       </div>
     </div>
   );
+}
+
+
+TaskBody.propTypes = {
+  textNoteValue: PropTypes.string.isRequired,
+  isBodyHidden: PropTypes.bool.isRequired,
+  id: PropTypes.object.isRequired,
+  onDeleteButtonClick: PropTypes.func.isRequired,
+  onTextNoteChange: PropTypes.func.isRequired,
+  selectValue: PropTypes.string.isRequired,
+  onSelectTabChange: PropTypes.func.isRequired,
+  onDueDateChange: PropTypes.func.isRequired,
+  dueDateValue: PropTypes.string.isRequired
 }
 
 export default TaskBody;

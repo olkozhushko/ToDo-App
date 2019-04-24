@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../css/CompleteTaskBar.css";
 
 const CompleteTaskBar = ({ tasks, onClick, hideCompletedTask}) => {
@@ -23,6 +24,12 @@ const CompleteTaskBar = ({ tasks, onClick, hideCompletedTask}) => {
         </button>
     </div>
   );
+}
+
+CompleteTaskBar.propTypes = {
+  tasks: PropTypes.array.isRequired, 
+  onClick: PropTypes.func.isRequired,
+  hideCompletedTask: PropTypes.bool.isRequired
 }
 
 export default CompleteTaskBar;

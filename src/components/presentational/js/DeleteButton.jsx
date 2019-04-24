@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import '../css/DeleteButton.css';
 
 const DeleteButton = ({ id, onDeleteButtonClick }) => {
@@ -10,6 +11,11 @@ const DeleteButton = ({ id, onDeleteButtonClick }) => {
       Delete
       </button>
   );
+}
+
+DeleteButton.propTypes = {
+  id: PropTypes.object.isRequired, 
+  onDeleteButtonClick: Proptypes.func.isRequired
 }
 
 export default DeleteButton;
