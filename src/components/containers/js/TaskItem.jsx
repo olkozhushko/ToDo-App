@@ -68,7 +68,7 @@ const TaskItem = ({
 
 TaskItem.propTypes = {
   onTaskItemClick: PropTypes.func.isRequired,
-  id: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   onDueDateChange: PropTypes.func.isRequired,
   selectValue: PropTypes.string.isRequired,
   taskItemChecked: PropTypes.bool.isRequired,
@@ -116,13 +116,13 @@ const TaskItemHeader = ({
 };
 
 TaskItemHeader.propTypes = {
-  itemContent: PropTypes.string.isRequired,
+  itemContent: PropTypes.node.isRequired,
   dateValue: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   arrowOpenTaskBody: PropTypes.bool.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   onCheckBoxChange: PropTypes.func.isRequired,
-  id: PropTypes.object.isRequired
+  id: PropTypes.string.isRequired
 }
 
 export default TaskItem;

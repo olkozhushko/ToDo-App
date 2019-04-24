@@ -24,7 +24,7 @@ const PrioritySelectTab = ({ onChange, selectPriorityValue, id }) => {
 PrioritySelectTab.propTypes = {
   onChange: PropTypes.func.isRequired,
   selectPriorityValue: PropTypes.string.isRequired,
-  id: PropTypes.object.isRequired
+  id: PropTypes.string.isRequired
 } 
 
 export default PrioritySelectTab;

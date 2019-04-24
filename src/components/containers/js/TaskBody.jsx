@@ -44,7 +44,7 @@ const TaskBody = ({ textNoteValue, isBodyHidden, id, onDeleteButtonClick, onText
 TaskBody.propTypes = {
   textNoteValue: PropTypes.string.isRequired,
   isBodyHidden: PropTypes.bool.isRequired,
-  id: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   onDeleteButtonClick: PropTypes.func.isRequired,
   onTextNoteChange: PropTypes.func.isRequired,
   selectValue: PropTypes.string.isRequired,

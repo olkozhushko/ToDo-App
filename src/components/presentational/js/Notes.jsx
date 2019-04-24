@@ -30,7 +30,7 @@ Notes.propTypes = {
   textNoteValue: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   isBodyHidden: PropTypes.bool.isRequired,
-  id: PropTypes.object.isRequired
+  id: PropTypes.string.isRequired
 }
 
 export default Notes;

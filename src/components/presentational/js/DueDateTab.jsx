@@ -19,10 +19,10 @@ const DueDateTab = ({ dateValue, onChange, id }) => {
   );
 }
 
-DueDateTab.proptypes = {
+DueDateTab.propTypes = {
   dateValue: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  id: PropTypes.object.isRequired
+  id: PropTypes.string.isRequired
 }
 
 export default DueDateTab;

@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import '../css/DeleteButton.css';
 
 const DeleteButton = ({ id, onDeleteButtonClick }) => {
-
+  
+  console.log(typeof id);
   return (
     <button
       className="delete-btn"
@@ -14,8 +15,8 @@ const DeleteButton = ({ id, onDeleteButtonClick }) => {
 }
 
 DeleteButton.propTypes = {
-  id: PropTypes.object.isRequired, 
-  onDeleteButtonClick: Proptypes.func.isRequired
+  id: PropTypes.string.isRequired, 
+  onDeleteButtonClick: PropTypes.func.isRequired
 }
 
 export default DeleteButton;
