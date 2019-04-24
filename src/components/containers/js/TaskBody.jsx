@@ -5,7 +5,7 @@ import DueDateTab from '../../presentational/js/DueDateTab';
 import PrioritySelectTab from '../../presentational/js/PrioritySelectTab';
 import DeleteButton from '../../presentational/js/DeleteButton';
 
-const TaskBody = ({ textNoteValue, isBodyHidden, itemStateData, onChange, onDeleteButtonClick, onTextNoteChange }) => {
+const TaskBody = ({ textNoteValue, isBodyHidden, id, onDeleteButtonClick, onTextNoteChange, selectValue, onSelectTabChange, onDueDateChange, dueDateValue }) => {
 
   const hidden = (isBodyHidden ?
     "task-body task-body_hidden" : "task-body");
@@ -18,19 +18,21 @@ const TaskBody = ({ textNoteValue, isBodyHidden, itemStateData, onChange, onDele
         onChange={onTextNoteChange}
         textNoteValue={textNoteValue}
         isBodyHidden={isBodyHidden} 
-        id={itemStateData.id}/>
+        id={id}/>
 
       <DueDateTab
-        onChange={onChange}
-        dateValue={itemStateData.dueDateValue} />
+        onChange={onDueDateChange}
+        dateValue={dueDateValue}
+        id={id}/>
 
       <PrioritySelectTab
-        color={itemStateData.priorityColor}
-        onChange={onChange} />
+        selectPriorityValue={selectValue}
+        onChange={onSelectTabChange} 
+        id={id}/>
 
       <div className="task-body__btn-box">
         <DeleteButton
-          id={itemStateData.id}
+          id={id}
           onDeleteButtonClick={onDeleteButtonClick} />
       </div>
     </div>

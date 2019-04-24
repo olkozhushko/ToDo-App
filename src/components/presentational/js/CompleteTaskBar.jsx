@@ -1,9 +1,16 @@
 import React from "react";
 import "../css/CompleteTaskBar.css";
 
-const CompleteTaskBar = ({ doneTasksCounter, onClick }) => {
+const CompleteTaskBar = ({ tasks, onClick, hideCompletedTask}) => {
 
-  const className = doneTasksCounter ?
+  let numDone = tasks.reduce((prev, curr) => {
+    if(curr.taskItemChecked) {
+      prev = prev + 1;
+    }
+    return prev;
+  }, 0)
+
+  const className = numDone ?
     "complete-task-bar" :
     "complete-task-bar complete-task-bar_hidden";
 
@@ -12,7 +19,7 @@ const CompleteTaskBar = ({ doneTasksCounter, onClick }) => {
       <button
         className="complete-task-bar__clear-btn"
         onClick={onClick}>
-        Done ({doneTasksCounter}) - Click to hide done tasks
+        Done ({numDone}) - Click to {hideCompletedTask ? "show completed" : "hide completed"}  tasks.
         </button>
     </div>
   );

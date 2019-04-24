@@ -30,7 +30,7 @@ class AddTaskBar extends Component {
             onChange={this.props.onTaskChange}
             placeholder="Type your task..."/>
         </label>
-        <input type="submit" class="addtask-form__submit-btn" value="add"/>
+        <input type="submit" className="addtask-form__submit-btn" value="add"/>
       </form>
     );
   }

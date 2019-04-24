@@ -35,11 +35,7 @@ class AppBody extends Component {
           return el;
         }
         return el;
-      }),
-      checkedItemNumber: state.tasks.reduce((prev, curr) => {
-        if (curr.taskItemChecked) return ++prev;
-        return prev;
-      }, 0)
+      })
     }));
   }
 
@@ -51,6 +47,33 @@ class AppBody extends Component {
         if (el.id === id) {
           
           el.textNoteValue = target.value;
+          return el;
+        }
+        return el;
+      })
+    }))
+  }
+
+  handleSelectTabChange(target, id) {
+
+    this.setState(state => ({
+
+      tasks: state.tasks.map(el => {
+        if(el.id === id) {
+          el.selectValue = target.value;
+          return el;
+        }
+        return el;
+      })
+    }))
+  }
+
+  handleDueDateChange(target, id) {
+    this.setState(state => ({
+
+      tasks: state.tasks.map(el => {
+        if(el.id === id) {
+          el.dueDateValue = target.value;
           return el;
         }
         return el;
@@ -97,7 +120,9 @@ class AppBody extends Component {
             taskItemChecked: false,
             isBodyHidden: true,
             arrowOpenTaskBody: false,
-            textNoteValue: ""
+            textNoteValue: "",
+            selectValue: "",
+            dueDateValue: this.defineInitialDate()
           }]),
           addTaskInputValue: ""
         }
@@ -105,7 +130,9 @@ class AppBody extends Component {
     }
   }
 
-  handleTaskItemClick(id) {
+  handleTaskItemClick(target, id) {
+    if(target.tagName === "INPUT") return;
+
      this.setState(state => ({
        tasks: state.tasks.map(el => {
          if (el.id === id) {
@@ -158,22 +185,40 @@ class AppBody extends Component {
 
   componentDidMount() {
     let elems = this.extractTaskFromLocaleStorage();
+
     this.setState({
       tasks: elems
     })
-
+    
   }
 
   componentDidUpdate() {
     
     for(let item of this.state.tasks) {
-      console.log("here");
+      
       let key = item.id.toString();
 
       item = JSON.stringify(item);
 
       localStorage.setItem(key, item);
     }
+
+  }
+
+  //define initial date to display it on todo item
+
+  defineInitialDate() {
+    let date = new Date();
+
+    let todayYear = date.getFullYear();
+    let todayMonth = (date.getMonth() + 1) < 10 ?
+      `0${(date.getMonth() + 1)}` : (date.getMonth() + 1);
+    let todayDay = (date.getDate()) < 10 ?
+      `0${(date.getDate())}` : (date.getDate());
+
+    let initialDate = `${todayYear}-${todayMonth}-${todayDay}`;
+
+    return initialDate;
   }
 
 
@@ -186,18 +231,24 @@ class AppBody extends Component {
           hideItem={this.state.hideCompletedTask}
           onCheckBoxChange={this.handleCheckBoxChange}
           onTaskItemClick={this.handleTaskItemClick} 
-          onTextNoteChange={this.handleTextNoteChange}/>
+          onTextNoteChange={this.handleTextNoteChange}
+          onSelectTabChange={(target, id) => this.handleSelectTabChange(target, id)}
+          onDueDateChange={(target, id) => this.handleDueDateChange(target, id)}/>
         <AddTaskBar 
           onTaskChange={this.handleAddTaskChange}
           onTaskSubmit={this.handleAddTaskSubmit}
           typedText={this.state.addTaskInputValue}/>
         <CompleteTaskBar 
           onClick={this.handleCompleteButtonClick}
-          doneTasksCounter={this.state.checkedItemNumber}/>
+          tasks={this.state.tasks}
+          hideCompletedTask={this.state.hideCompletedTask}/>
         <ClearStoryBtn onClick={() => this.handleClearStoryBtnClick()}/>
       </div>
     );
   }
 }
+
+
+
 
 export default AppBody;

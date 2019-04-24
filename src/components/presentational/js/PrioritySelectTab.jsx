@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/PrioritySelectTab.css";
 
-const PrioritySelectTab = ({ onChange, selectPriorityValue }) => {
+const PrioritySelectTab = ({ onChange, selectPriorityValue, id }) => {
   return (
     <div className="task-body__select-box">
       <span className="tab-text">Priority</span>
@@ -9,7 +9,8 @@ const PrioritySelectTab = ({ onChange, selectPriorityValue }) => {
         name="select-priority"
         value={selectPriorityValue}
         className="task-body__tab"
-        onChange={onChange}>
+        onChange={(e) => onChange(e.target, id)}>
+
         <option value="None">None</option>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
