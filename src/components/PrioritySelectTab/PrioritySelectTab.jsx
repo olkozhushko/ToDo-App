@@ -10,8 +10,8 @@ const PrioritySelectTab = ({ onChange, selectPriorityValue, id }) => {
         name="select-priority"
         value={selectPriorityValue}
         className="task-body__tab"
-        onChange={(e) => onChange(e.target, id)}>
-
+        onChange={e => onChange(e.target, id)}
+      >
         <option value="None">None</option>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
@@ -19,12 +19,12 @@ const PrioritySelectTab = ({ onChange, selectPriorityValue, id }) => {
       </select>
     </div>
   );
-}
+};
 
 PrioritySelectTab.propTypes = {
   onChange: PropTypes.func.isRequired,
   selectPriorityValue: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired
-} 
+};
 
 export default PrioritySelectTab;

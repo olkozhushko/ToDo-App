@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+#for deployment
+# src/*
+# public/*
+# build/static/css/*.map
+# build/static/js/*.map
+
 # testing
 /coverage
 

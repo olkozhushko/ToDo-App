@@ -4,7 +4,6 @@ import './DeleteButton.css';
 
 const DeleteButton = ({ id, onDeleteButtonClick }) => {
   
-  console.log(typeof id);
   return (
     <button
       className="delete-btn"

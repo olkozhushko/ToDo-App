@@ -4,8 +4,8 @@ import './Notes.css';
 
 const Notes = ({textNoteValue, onChange, isBodyHidden, id}) => {
 
-    //if task body hidden define class and add 
-    //to form "className" to hide it as well.
+    //if task body is hidden define class and add 
+    //"className"  to form to hide it as well.
 
     let addonClass = isBodyHidden ? 
       "note-form_hidden" : "";
