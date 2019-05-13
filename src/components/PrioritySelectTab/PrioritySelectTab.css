@@ -4,6 +4,7 @@
   font: 0.9rem/1.4rem helvetica, arial;
   text-align: left;
   border: 1px solid rgb(204, 195, 195);
+  background: #ffffff;
   border-radius: 3px;
   transition: all 0.1s linear;
 }

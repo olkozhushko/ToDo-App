@@ -2,7 +2,7 @@
   border-radius: var(--box-radius, 2px);
   width: 100%;
   background: #ffffff;
-  padding: 0 1rem 0 1rem;
+  padding: 0.1rem 1rem 0.1rem 1rem;
   display: flex;
   flex-direction: column;
   margin-bottom: var(--mg-bottom, 1rem);
@@ -10,8 +10,10 @@
 }
 
 .task-list__text {
+  display: inline-block;
   margin-left: 1rem;
-  font: 1rem/1rem helvetica;
+  font: 0.9rem/1.4rem "Courier New", sans-serif;
+  color: rgb(32, 30, 30);
 }
 
 .task-list__bars-icon {
@@ -28,7 +30,7 @@
 
 .task-list__date {
   position: absolute;
-  right: 3rem;
+  right: 2rem;
   align-self: flex-end;
   font: 0.8rem/1.4rem helvetica, sans-serif;
   color: rgb(218, 209, 209);
@@ -36,6 +38,7 @@
 
 .task-list__item-header {
   width: 100%;
+  padding-right: 5rem; 
   height: 2.5rem;
   display: flex;
   align-items: center;

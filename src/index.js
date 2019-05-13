@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import AppBody from './components/containers/js/AppBody';
+import AppBody from './components/AppBody/AppBody';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<AppBody />, document.getElementById('root'));

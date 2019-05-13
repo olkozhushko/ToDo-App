@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../css/PrioritySelectTab.css";
+import "./PrioritySelectTab.css";
 
 const PrioritySelectTab = ({ onChange, selectPriorityValue, id }) => {
   return (

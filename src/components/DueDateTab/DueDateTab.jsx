@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../css/DueDateTab.css";
+import "./DueDateTab.css";
 
 const DueDateTab = ({ dateValue, onChange, id }) => {
   
@@ -12,7 +12,6 @@ const DueDateTab = ({ dateValue, onChange, id }) => {
         value={dateValue}
         onChange={(e) => {
           onChange(e.target, id)
-          console.log(e.target.value)
         }}
         className="task-body__tab task-body__tab_date-padding" />
     </div>

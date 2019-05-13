@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../css/CompleteTaskBar.css";
+import "./CompleteTaskBar.css";
 
 const CompleteTaskBar = ({ tasks, onClick, hideCompletedTask}) => {
 

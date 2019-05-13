@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import '../css/Notes.css';
+import './Notes.css';
 
 const Notes = ({textNoteValue, onChange, isBodyHidden, id}) => {
 
